@@ -10,8 +10,10 @@ const dataSet = string.split(' ').map(num => Number(num));
 //3rd: j=2 i=3 [30,25,32,89,72,70]
 //4th j =3 i = 5 [30,25,32,70,72,89]
 
+let counter = 0;
 function qSort(array, start = 0, end = array.length) {
   if (start >= end) {
+    counter +=1;
     return array;
   }
   const mid = partition(array, start, end);
@@ -24,6 +26,7 @@ function partition(array, start, end) {
   const pivot = array[end - 1];
   let j = start;
   for (let i = start; i < end - 1; i++) {
+    counter+=1;
     if (array[i] <= pivot) {
       swap(array, i, j);
       j++;
@@ -34,9 +37,11 @@ function partition(array, start, end) {
 }
 
 function swap(array, i, j) {
+  counter+=1;
   const temp = array[i];
   array[i] = array[j];
   array[j] = temp;
 }
 
 console.log('quick sort', qSort(dataSet));
+console.log('counter ' +  counter);
